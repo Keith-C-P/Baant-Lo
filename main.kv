@@ -1,21 +1,32 @@
 #:kivy 2.3.0
+<ScrollButton@Button>:
+    size_hint_y: None
+    height: 50
+    color: 237/255, 129/255, 119/255, 1
+    background_normal: ''
+    background_color: 239/255, 241/255, 237/255, 1
+    border: 1, 1, 1, 1
+    border_color: 232/255, 185/255, 171/255, 1
+    bold: True
 
 <HomeScreen>:
-    id:HomeScreen
+    id: HomeScreen
     canvas.before:
         Color:
             rgba: 220/255, 255/255, 242/255, 1
         Rectangle:
-            pos:self.pos
-            size:self.size
+            pos: self.pos
+            size: self.size
+
     FloatLayout:
         Label:
-            id : UID
+            id: UID
             text: root.uid
-            size_hint: .45, .15
-            pos_hint: {'center_x':.5, 'center_y':.85}
+            size_hint: 0.5, 0.1
+            pos_hint: {'center_x': 0.5, 'top': 0.95}
             font_size: 80
-            color: 1., 1., 1., 1. #font color
+            color: 1, 1, 1, 1  # font color
+            bold: True
             background_color: 86/255, 203/255, 206/255, 1
             canvas.before:
                 Color:
@@ -24,12 +35,27 @@
                     size: self.size
                     pos: self.pos
                     radius: [20,]
+
+        Image:
+            source: 'samba.png'
+            size_hint: 0.3, 0.3
+            pos_hint: {'center_x': 0.5, 'center_y': 0.65}
+            background_color: 85/255, 203/255, 205/255, 1
+            canvas.before:
+                Color:
+                    rgba: self.background_color
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [20,]
+
         Label:
-            text : 'DEVICES'
-            size_hint: .45, .15
-            pos_hint: {'center_x':.5, 'center_y':.7}
+            text: 'DEVICES'
+            size_hint: 0.5, 0.1
+            pos_hint: {'center_x': 0.5, 'y': 0.35}
             font_size: 80
-            color: 1., 1., 1., 1. #font color
+            color: 237/255, 129/255, 119/255, 1
+            bold: True  
             background_color: 239/255, 241/255, 237/255, 1
             canvas.before:
                 Color:
@@ -38,4 +64,29 @@
                     size: self.size
                     pos: self.pos
                     radius: [20,]
-        
+
+        ScrollView:
+            size_hint: 0.8, 0.3
+            pos_hint: {'center_x': 0.5, 'y': 0.02}
+            GridLayout:
+                padding : 10
+                cols: 1
+                size_hint_y: None
+                height: self.minimum_height
+                spacing: 5
+                background_color: 239/255, 241/255, 237/255, 1
+                
+                ScrollButton:
+                    text: 'Gojo'
+                ScrollButton:
+                    text: 'Dante'
+                ScrollButton:
+                    text: 'Josuke'
+
+                canvas.before:
+                Color:
+                    rgba: self.background_color
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [20,]
