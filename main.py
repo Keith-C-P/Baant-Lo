@@ -1,29 +1,28 @@
 from kivy.app import App
-from kivy.uix.button import Button
-from kivy.uix.label import Label
-from kivy.uix.boxlayout import BoxLayout
+from kivy.lang import Builder
+from kivy.uix.floatlayout import FloatLayout
+from kivy.properties import StringProperty
+#from .client import Client
+import random
+
+Builder.load_file('main.kv')
+class HomeScreen(FloatLayout):
+    uid = StringProperty('UID: ')
+    pass
+    
+
+class ShareScreen(FloatLayout):
+    def share(self):
+        client = Client()
+        client.send('share')
 
 class Client(App):
+    def on_start(self):
+        self.root.uid += str(random.randint(0, 999999999)).zfill(9)
+
     def build(self):
-        # Create a BoxLayout
-        layout = BoxLayout(orientation='vertical', spacing=10, padding=10)
-
-        # Create a Label
-        self.label = Label(text='Hello, Kivy!')
-
-        # Create a Button
-        btn = Button(text='Click Me!')
-        btn.bind(on_press=self.on_button_click)
-
-        # Add the Label and Button to the layout
-        layout.add_widget(self.label)
-        layout.add_widget(btn)
-
-        return layout
-
-    def on_button_click(self, instance):
-        # Change the label text when the button is clicked
-        self.label.text = 'Button On'
+        
+        return HomeScreen()
 
 
 if __name__ == '__main__':
